@@ -1,0 +1,157 @@
+{
+  "introduction": {
+    "title": "Falak al-Buruj - The Sphere of the Fixed Stars",
+    "description": "The topic of today's waʿz mubarak was Falak al-Buruj, which in Islamic cosmological sciences is referred to as the Sphere of the Fixed Stars. This lies directly beneath al-Falak al-Muheet and contains countless stars, named for the figures, creatures, and symbols these stars appear to form.",
+    "quote": "They speak of the stars, influencing humankind, then what of him, whose influence is upon the stars?"
+  },
+  "zodiac_signs": [
+    {
+      "id": 1,
+      "arabic_name": "حمل",
+      "arabic_transliteration": "Haml",
+      "english_name": "Aries",
+      "symbol": "♈",
+      "quality": "Forbearance and Patience",
+      "description": "Those influenced by this star sign are attributed with forbearance, patience and tolerance. They fulfill the obligations and rights of others.",
+      "spiritual_example": "Imam Muʿizz AS demonstrated this when he patiently heard and responded to each person's questions without showing any sign of being vexed, treating each interaction as if it was for their benefit.",
+      "parenting_advice": "Parents should exercise forbearance and restraint, patiently hearing children's questions without being annoyed or resorting to harsh discipline.",
+      "karbala_connection": "Imam Husain AS refusing to attack the Kufans when their numbers were small, saying 'They are my revered grandfather's ummah! How can I begin a battle with them?'"
+    },
+    {
+      "id": 2,
+      "arabic_name": "ثور",
+      "arabic_transliteration": "Thawr",
+      "english_name": "Taurus",
+      "symbol": "♉",
+      "quality": "Hard Work and Dedication",
+      "description": "People influenced by it tend to be hardworking and dedicated to their tasks. The stars take the form of a sitting ox.",
+      "spiritual_example": "Syedna Abdeali Saifuddin RA instilled hard work in students of Darse Saifee by ensuring they undertook menial tasks like gathering firewood and winnowing wheat.",
+      "parenting_advice": "Children should be encouraged to work hard instead of spending time on their phones. They should learn vital life skills and become independent.",
+      "karbala_connection": "Imam carried every slain companion back to the camp borne upon his own two shoulders, working tirelessly whether the action was large or small."
+    },
+    {
+      "id": 3,
+      "arabic_name": "جوزاء",
+      "arabic_transliteration": "Jawzaa",
+      "english_name": "Gemini",
+      "symbol": "♊",
+      "quality": "Multifaceted Nature",
+      "description": "Its stars form the outline of a man and woman. Those influenced by this constellation are multifaceted individuals with diverse traits, possessing both a trait and its opposite as dictated by situations.",
+      "spiritual_example": "Imam Hasan AS demonstrated this when he was strict over a small amount of money to prevent wrongdoing, but generous when someone genuinely sought his help.",
+      "parenting_advice": "Parents should know when to be firm and when to be gentle with their children, depending on what each situation requires.",
+      "karbala_connection": "Despite being covered in wounds, Imam Husain AS with his scything gaze caused those coming to slay him to turn and run in fear."
+    },
+    {
+      "id": 4,
+      "arabic_name": "سرطان",
+      "arabic_transliteration": "Sarataan",
+      "english_name": "Cancer",
+      "symbol": "♋",
+      "quality": "Loyalty",
+      "description": "Those born under this influence are loyal in their undertakings. Loyalty entails staying true to one's word, standing by loved ones, and protecting them from harm.",
+      "spiritual_example": "Imam Husain's AS childhood pledge to Rasul Allah SAW to repay a debt, which he fulfilled by going to Karbala and seeking shahadat.",
+      "parenting_advice": "Instill loyalty in children towards their transactions, jamaat, friends, families, countries, and most importantly towards Wali Allah AS.",
+      "karbala_connection": "Maulana Abbas AS reached the Furat River, took not a drop for himself, and gave both his arms trying to bring back the water skin to camp."
+    },
+    {
+      "id": 5,
+      "arabic_name": "أسد",
+      "arabic_transliteration": "Asad",
+      "english_name": "Leo",
+      "symbol": "♌",
+      "quality": "Confidence and Bravery",
+      "description": "Named after a lion, those born under its influence are graced with confidence. The height of bravery is seen in overcoming one's nafs (evil-inciting soul).",
+      "spiritual_example": "Amirul Mumineen AS spared his opponent who spat on his face because killing him then would have been out of anger rather than for Allah.",
+      "parenting_advice": "Teach children to struggle against negative impulses, always overcoming anger and negative character traits to ensure pure intentions.",
+      "karbala_connection": "Imam Husain AS chose whom to cut down and whom to let be in battle, demonstrating true courage and control even in the heat of combat."
+    },
+    {
+      "id": 6,
+      "arabic_name": "سنبلة",
+      "arabic_transliteration": "Sunbula",
+      "english_name": "Virgo",
+      "symbol": "♍",
+      "quality": "Practicality and Prosperity",
+      "description": "Imparts practicality and analytical ability. Takes the form of a maiden carrying harvested wheat, signifying prosperity. True prosperity lies in recognizing Allah's blessings.",
+      "spiritual_example": "The height of prosperity is shedding tears in remembrance of Imam Husain AS even during times of happiness, recognizing him as the source of our prosperity.",
+      "parenting_advice": "Parents should be most proud when their children attend majalis of Imam Husain AS and weep in his remembrance.",
+      "karbala_connection": "Holding a wedding ceremony amidst the pain and torment of Aashura, showing prosperity even in the darkest moments."
+    },
+    {
+      "id": 7,
+      "arabic_name": "ميزان",
+      "arabic_transliteration": "Meezan",
+      "english_name": "Libra",
+      "symbol": "♎",
+      "quality": "Justice and Fairness",
+      "description": "Takes the shape of a scale, symbolizing fairness and justice. True fairness means giving precedence to others even when one is also deserving.",
+      "spiritual_example": "Syedi Shaikh Adam QR gave precedence to his own student, recognizing his worth above personal claim.",
+      "parenting_advice": "Nurture gratitude in children so they appreciate Allah's blessings rather than envying others, fostering inner peace.",
+      "karbala_connection": "Imam Husain AS forgave Hurr AS and gave him permission to be the first to go into battle, to become the first of the shuhadaa."
+    },
+    {
+      "id": 8,
+      "arabic_name": "عقرب",
+      "arabic_transliteration": "ʿAqrab",
+      "english_name": "Scorpio",
+      "symbol": "♏",
+      "quality": "Strategic Planning",
+      "description": "Symbolizes strategic foresight and precision in planning. True planning accounts for every detail, anticipates obstacles, and adapts when needed.",
+      "spiritual_example": "Imam Muʿizz AS's persistent planning for conquering Faas, demonstrating that true planning rests on tawakkul (trust in Allah).",
+      "parenting_advice": "Students should plan for exams well in advance, and those memorizing Quran should follow structured routines. Planning for ʿAshara is equally essential.",
+      "karbala_connection": "Instruction given to the haram to wear double clothing, yet knowing even that wouldn't be sufficient, entrusting their care to Imam Ali Zain al-Abideen AS."
+    },
+    {
+      "id": 9,
+      "arabic_name": "قوس",
+      "arabic_transliteration": "Qaws",
+      "english_name": "Sagittarius",
+      "symbol": "♐",
+      "quality": "Focus and Precision",
+      "description": "Named after the archer, depicted as a centaur drawing a bow. Requires intense focus and the ability to direct all attention toward a single aim.",
+      "spiritual_example": "Syedi Dawood bhaisaheb QR, an accomplished archer, would miss his target in the presence of the Dai because his true focus was maintaining sanctity and humility.",
+      "parenting_advice": "Cultivate focus in children through namaz, which demands physical and spiritual orientation toward the qibla, disciplining minds and hearts.",
+      "karbala_connection": "As Shimr drew his blade upon Imam Husain's AS throat, Imam AS remained focused on completing his final sajda."
+    },
+    {
+      "id": 10,
+      "arabic_name": "جدي",
+      "arabic_transliteration": "Jady",
+      "english_name": "Capricorn",
+      "symbol": "♑",
+      "quality": "Reconciliation",
+      "description": "Represents reconciliation and sensitivity. Those born under this sign are caring and prone to reconciliation based on empathy.",
+      "spiritual_example": "Imam Ali Zain al-Abideen AS's response to insults: 'If what you say about me is true, may Allah forgive me. If it is not, may Allah forgive you.'",
+      "parenting_advice": "Parents should refrain from quarrelling, especially in front of children, as they are deeply sensitive to such conflicts.",
+      "karbala_connection": "An Imam whose entire cohort had been slain was still ready to give the enemy the waters of paradise for one sip of water for his six-month-old son."
+    },
+    {
+      "id": 11,
+      "arabic_name": "دلو",
+      "arabic_transliteration": "Dalw",
+      "english_name": "Aquarius",
+      "symbol": "♒",
+      "quality": "Mercy and Influence",
+      "description": "Resembles a person pouring water from a bucket. Those possessing these qualities are merciful, helpful, and able to positively influence others.",
+      "spiritual_example": "Imam Husain AS influenced a man destined to have no children to be blessed with seven children through his blessed presence.",
+      "parenting_advice": "Parents should positively influence their children, shielding them from harm and using Lisan al-Dawat as a potent tool.",
+      "karbala_connection": "Imam Husain AS was the beneficence of the water drawer, whose mercy encompasses all those who weep upon him."
+    },
+    {
+      "id": 12,
+      "arabic_name": "حوت",
+      "arabic_transliteration": "Hoot",
+      "english_name": "Pisces",
+      "symbol": "♓",
+      "quality": "Perceptiveness and Confidentiality",
+      "description": "Described as a large fish that swims effortlessly without sound. Those influenced by this sign are perceptive and keep secrets well.",
+      "spiritual_example": "Imam al-Muʿizz AS kept the confidential matters of Imam al-Mansoor AS so well that he would say it's as if he never knew them.",
+      "parenting_advice": "Foster confidentiality in children by not openly discussing others' shortcomings at home, teaching them to practice discretion.",
+      "karbala_connection": "The intelligent understanding and perceptiveness in knowing it was time to hide the wracking pain of countless wounds while maintaining strength."
+    }
+  ],
+  "conclusion": {
+    "zainab_grief": "The grief of Maulatona Zainab AS as she witnessed the events of Karbala, holding the horse steady for Imam Husain AS to mount when Maulana Abbas AS had given his arms.",
+    "final_blessing": "May Allah Taʿala grant our beloved Aqa Maula TUS, the bearer of all the beautiful qualities of the buruj, a long life in health and happiness until the Day of Qiyamat."
+  }
+}

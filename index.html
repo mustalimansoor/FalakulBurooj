@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Falak al-Buruj - The Sphere of the Fixed Stars</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-background"></div>
+        <div class="container hero-content">
+            <h1 class="hero-title">Falak al-Buruj</h1>
+            <p class="hero-subtitle">The Sphere of the Fixed Stars</p>
+            <div class="hero-description">
+                <p>The topic of today's waʿz mubarak was Falak al-Buruj, which in Islamic cosmological sciences is referred to as the Sphere of the Fixed Stars. This lies directly beneath al-Falak al-Muheet and contains countless stars, named for the figures, creatures, and symbols these stars appear to form.</p>
+            </div>
+            <blockquote class="hero-quote">
+                "They speak of the stars, influencing humankind, then what of him, whose influence is upon the stars?"
+            </blockquote>
+            <button class="btn btn--primary explore-btn">Explore the Zodiac</button>
+        </div>
+    </header>
+
+    <!-- Navigation Section -->
+    <section class="zodiac-navigation" id="zodiac-navigation">
+        <div class="container">
+            <h2 class="section-title">The Twelve Buruj</h2>
+            <div class="zodiac-grid">
+                <div class="zodiac-card" data-sign="1">
+                    <div class="zodiac-symbol">♈</div>
+                    <h3 class="arabic-name">حمل</h3>
+                    <p class="transliteration">Haml</p>
+                    <p class="english-name">Aries</p>
+                    <p class="quality">Forbearance & Patience</p>
+                </div>
+                <div class="zodiac-card" data-sign="2">
+                    <div class="zodiac-symbol">♉</div>
+                    <h3 class="arabic-name">ثور</h3>
+                    <p class="transliteration">Thawr</p>
+                    <p class="english-name">Taurus</p>
+                    <p class="quality">Hard Work & Dedication</p>
+                </div>
+                <div class="zodiac-card" data-sign="3">
+                    <div class="zodiac-symbol">♊</div>
+                    <h3 class="arabic-name">جوزاء</h3>
+                    <p class="transliteration">Jawzaa</p>
+                    <p class="english-name">Gemini</p>
+                    <p class="quality">Multifaceted Nature</p>
+                </div>
+                <div class="zodiac-card" data-sign="4">
+                    <div class="zodiac-symbol">♋</div>
+                    <h3 class="arabic-name">سرطان</h3>
+                    <p class="transliteration">Sarataan</p>
+                    <p class="english-name">Cancer</p>
+                    <p class="quality">Loyalty</p>
+                </div>
+                <div class="zodiac-card" data-sign="5">
+                    <div class="zodiac-symbol">♌</div>
+                    <h3 class="arabic-name">أسد</h3>
+                    <p class="transliteration">Asad</p>
+                    <p class="english-name">Leo</p>
+                    <p class="quality">Confidence & Bravery</p>
+                </div>
+                <div class="zodiac-card" data-sign="6">
+                    <div class="zodiac-symbol">♍</div>
+                    <h3 class="arabic-name">سنبلة</h3>
+                    <p class="transliteration">Sunbula</p>
+                    <p class="english-name">Virgo</p>
+                    <p class="quality">Practicality & Prosperity</p>
+                </div>
+                <div class="zodiac-card" data-sign="7">
+                    <div class="zodiac-symbol">♎</div>
+                    <h3 class="arabic-name">ميزان</h3>
+                    <p class="transliteration">Meezan</p>
+                    <p class="english-name">Libra</p>
+                    <p class="quality">Justice & Fairness</p>
+                </div>
+                <div class="zodiac-card" data-sign="8">
+                    <div class="zodiac-symbol">♏</div>
+                    <h3 class="arabic-name">عقرب</h3>
+                    <p class="transliteration">ʿAqrab</p>
+                    <p class="english-name">Scorpio</p>
+                    <p class="quality">Strategic Planning</p>
+                </div>
+                <div class="zodiac-card" data-sign="9">
+                    <div class="zodiac-symbol">♐</div>
+                    <h3 class="arabic-name">قوس</h3>
+                    <p class="transliteration">Qaws</p>
+                    <p class="english-name">Sagittarius</p>
+                    <p class="quality">Focus & Precision</p>
+                </div>
+                <div class="zodiac-card" data-sign="10">
+                    <div class="zodiac-symbol">♑</div>
+                    <h3 class="arabic-name">جدي</h3>
+                    <p class="transliteration">Jady</p>
+                    <p class="english-name">Capricorn</p>
+                    <p class="quality">Reconciliation</p>
+                </div>
+                <div class="zodiac-card" data-sign="11">
+                    <div class="zodiac-symbol">♒</div>
+                    <h3 class="arabic-name">دلو</h3>
+                    <p class="transliteration">Dalw</p>
+                    <p class="english-name">Aquarius</p>
+                    <p class="quality">Mercy & Influence</p>
+                </div>
+                <div class="zodiac-card" data-sign="12">
+                    <div class="zodiac-symbol">♓</div>
+                    <h3 class="arabic-name">حوت</h3>
+                    <p class="transliteration">Hoot</p>
+                    <p class="english-name">Pisces</p>
+                    <p class="quality">Perceptiveness & Confidentiality</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Sign View -->
+    <section class="sign-detail hidden" id="sign-detail">
+        <div class="container">
+            <div class="sign-detail-header">
+                <button class="btn btn--outline back-btn">← Back to All Signs</button>
+                <div class="sign-navigation">
+                    <button class="btn btn--secondary prev-btn">‹ Previous</button>
+                    <button class="btn btn--secondary next-btn">Next ›</button>
+                </div>
+            </div>
+            
+            <div class="sign-detail-content">
+                <div class="sign-main-info">
+                    <div class="sign-symbol-large" id="detail-symbol">♈</div>
+                    <div class="sign-names">
+                        <h2 class="arabic-name-large" id="detail-arabic"></h2>
+                        <p class="transliteration-large" id="detail-transliteration"></p>
+                        <p class="english-name-large" id="detail-english"></p>
+                    </div>
+                </div>
+
+                <div class="sign-quality">
+                    <h3>Spiritual Quality</h3>
+                    <p class="quality-text" id="detail-quality"></p>
+                </div>
+
+                <div class="sign-sections">
+                    <div class="sign-section">
+                        <h3>Description</h3>
+                        <p id="detail-description"></p>
+                    </div>
+
+                    <div class="sign-section">
+                        <h3>Spiritual Example</h3>
+                        <p id="detail-example"></p>
+                    </div>
+
+                    <div class="sign-section">
+                        <h3>Parenting Guidance</h3>
+                        <p id="detail-parenting"></p>
+                    </div>
+
+                    <div class="sign-section karbala-section">
+                        <h3>Connection to Karbala</h3>
+                        <p id="detail-karbala"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Conclusion Section -->
+    <section class="conclusion" id="conclusion">
+        <div class="container">
+            <div class="conclusion-content">
+                <h2 class="section-title">The Grief of Maulatona Zainab AS</h2>
+                <div class="zainab-content">
+                    <p>And from here we were taken to the zikr of the grief of Maulatona Zainab AS and the shahadat as seen through her eyes: "Aahin! For the anguish of Zainab!" As Imam AS stood holding the reins of his steed he looked for Maulana Abbas RA, had he given his arms and left him alone? It was his sister who held the horse steady for him to mount.</p>
+                    
+                    <p>Imam Husain AS gave his last will to Maulatona Zainab AS, and as he told her of what was to come he said, "Why are you distraught now, there are many torments yet to come! Sakina should always feel that her father is present!" As she heard these words Zainab's AS distress surged, "The Panjatan have all been slain, why is it that death will not come to Zainab!"</p>
+                </div>
+                
+                <div class="final-blessing">
+                    <p class="blessing-text">May Allah Taʿala grant our beloved Aqa Maula TUS, the bearer of all the beautiful qualities of the buruj, a long life in health and happiness until the Day of Qiyamat.</p>
+                </div>
+                
+                <button class="btn btn--primary return-btn">Return to the Stars</button>
+            </div>
+        </div>
+    </section>
+
+    <script src="app.js"></script>
+</body>
+</html>
