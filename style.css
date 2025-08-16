@@ -738,9 +738,8 @@ select.form-control {
 }
 
 /* END PERPLEXITY DESIGN SYSTEM */
-/* Import Design System */
+/* Islamic-inspired color palette */
 :root {
-  /* Islamic-inspired color palette */
   --islamic-blue: #1e3a8a;
   --islamic-gold: #fbbf24;
   --islamic-dark-blue: #1e40af;
@@ -768,11 +767,31 @@ body {
   background: var(--color-background);
   color: var(--color-text);
   line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Main Page Layout */
+.main-page {
+  min-height: 100vh;
+  display: block;
+}
+
+/* Hide/Show utilities with higher specificity */
+.hidden {
+  display: none !important;
+}
+
+.main-page.hidden {
+  display: none !important;
+}
+
+.sign-detail.hidden {
+  display: none !important;
 }
 
 /* Hero Section */
 .hero {
-  min-height: 100vh;
+  min-height: 70vh;
   position: relative;
   display: flex;
   align-items: center;
@@ -829,13 +848,13 @@ body {
 
 .hero-subtitle {
   font-size: var(--font-size-xl);
-  margin-bottom: var(--space-32);
+  margin-bottom: var(--space-24);
   color: var(--islamic-cream);
   font-weight: var(--font-weight-medium);
 }
 
 .hero-description {
-  margin-bottom: var(--space-32);
+  margin-bottom: var(--space-24);
   font-size: var(--font-size-lg);
   line-height: 1.8;
   color: var(--islamic-cream);
@@ -844,8 +863,8 @@ body {
 .hero-quote {
   font-size: var(--font-size-xl);
   font-style: italic;
-  margin: var(--space-32) 0;
-  padding: var(--space-24);
+  margin: var(--space-24) 0;
+  padding: var(--space-20);
   border: 2px solid var(--islamic-gold);
   border-radius: var(--radius-lg);
   background: rgba(255, 255, 255, 0.1);
@@ -853,29 +872,11 @@ body {
   color: var(--islamic-gold);
 }
 
-.explore-btn {
-  margin-top: var(--space-32);
-  padding: var(--space-16) var(--space-32);
-  font-size: var(--font-size-lg);
-  background: var(--islamic-gold);
-  color: var(--islamic-dark-blue);
-  border: none;
-  border-radius: var(--radius-lg);
-  cursor: pointer;
-  transition: all var(--duration-normal) var(--ease-standard);
-  font-weight: var(--font-weight-semibold);
-}
-
-.explore-btn:hover {
-  background: var(--islamic-deep-gold);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(251, 191, 36, 0.3);
-}
-
-/* Zodiac Navigation Section */
-.zodiac-navigation {
+/* Zodiac Tiles Section */
+.zodiac-tiles {
   padding: var(--space-32) 0;
   background: var(--color-background);
+  min-height: 50vh;
 }
 
 .section-title {
@@ -888,10 +889,28 @@ body {
 
 .zodiac-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: var(--space-24);
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .zodiac-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .zodiac-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1400px) {
+  .zodiac-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 .zodiac-card {
@@ -904,6 +923,15 @@ body {
   transition: all var(--duration-normal) var(--ease-standard);
   position: relative;
   overflow: hidden;
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+  /* Ensure cards are interactive */
+  pointer-events: auto;
+  user-select: none;
+  z-index: 1;
 }
 
 .zodiac-card::before {
@@ -915,6 +943,7 @@ body {
   height: 100%;
   background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.1), transparent);
   transition: left 0.5s;
+  pointer-events: none;
 }
 
 .zodiac-card:hover::before {
@@ -922,15 +951,26 @@ body {
 }
 
 .zodiac-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-8px) scale(1.02);
   box-shadow: var(--shadow-lg);
   border-color: var(--islamic-deep-gold);
 }
 
+.zodiac-card:active {
+  transform: translateY(-6px) scale(0.98);
+}
+
+.zodiac-card:focus {
+  outline: var(--focus-outline);
+  outline-offset: 2px;
+}
+
 .zodiac-symbol {
-  font-size: 3rem;
+  font-size: 3.5rem;
   color: var(--islamic-gold);
   margin-bottom: var(--space-16);
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+  pointer-events: none;
 }
 
 .arabic-name {
@@ -939,6 +979,7 @@ body {
   color: var(--islamic-dark-blue);
   margin-bottom: var(--space-8);
   font-weight: var(--font-weight-bold);
+  pointer-events: none;
 }
 
 .transliteration {
@@ -946,6 +987,7 @@ body {
   font-style: italic;
   color: var(--color-text-secondary);
   margin-bottom: var(--space-4);
+  pointer-events: none;
 }
 
 .english-name {
@@ -953,38 +995,165 @@ body {
   font-weight: var(--font-weight-medium);
   color: var(--color-text);
   margin-bottom: var(--space-12);
+  pointer-events: none;
 }
 
 .quality {
   font-size: var(--font-size-sm);
   color: var(--islamic-deep-gold);
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--font-weight-semibold);
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  background: rgba(251, 191, 36, 0.1);
+  padding: var(--space-6) var(--space-12);
+  border-radius: var(--radius-full);
+  margin-top: auto;
+  pointer-events: none;
+}
+
+/* Conclusion Section */
+.conclusion {
+  padding: var(--space-32) 0;
+  background: var(--color-bg-4);
+  border-top: 3px solid var(--islamic-gold);
+  position: relative;
+}
+
+.conclusion::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(30, 64, 175, 0.03) 0%, rgba(251, 191, 36, 0.02) 100%);
+  pointer-events: none;
+}
+
+.conclusion .container {
+  position: relative;
+  z-index: 1;
+}
+
+.conclusion .section-title {
+  color: var(--islamic-dark-blue);
+  margin-bottom: var(--space-24);
+  position: relative;
+}
+
+.conclusion .section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--islamic-gold), transparent);
+}
+
+.conclusion-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.conclusion-paragraph {
+  background: var(--color-surface);
+  padding: var(--space-24);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--space-20);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+}
+
+.conclusion-paragraph:last-child {
+  margin-bottom: 0;
+}
+
+.conclusion-paragraph::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--islamic-gold);
+  border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+}
+
+.conclusion-paragraph p {
+  font-size: var(--font-size-lg);
+  line-height: 1.8;
+  color: var(--color-text);
+  margin: 0;
+  text-align: center;
+  font-weight: var(--font-weight-medium);
+}
+
+.conclusion-blessing {
+  background: var(--color-bg-1);
+  border-color: var(--islamic-deep-gold);
+}
+
+.conclusion-blessing::before {
+  background: var(--islamic-deep-gold);
+}
+
+.conclusion-blessing p {
+  color: var(--islamic-dark-blue);
+  font-weight: var(--font-weight-semibold);
+  font-style: italic;
 }
 
 /* Sign Detail Section */
 .sign-detail {
   padding: var(--space-32) 0;
   background: var(--color-background);
-}
-
-.sign-detail.hidden {
+  min-height: 100vh;
   display: none;
 }
 
-.sign-detail-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: var(--space-32);
-  flex-wrap: wrap;
-  gap: var(--space-16);
+.sign-detail.hidden {
+  display: none !important;
 }
 
-.sign-navigation {
-  display: flex;
-  gap: var(--space-12);
+.sign-detail-header {
+  margin-bottom: var(--space-32);
+}
+
+.back-btn {
+  background: var(--islamic-gold) !important;
+  color: var(--islamic-dark-blue) !important;
+  border: none !important;
+  padding: var(--space-12) var(--space-24) !important;
+  border-radius: var(--radius-base) !important;
+  cursor: pointer !important;
+  transition: all var(--duration-normal) var(--ease-standard) !important;
+  font-weight: var(--font-weight-semibold) !important;
+  font-size: var(--font-size-base) !important;
+  display: inline-block !important;
+  text-decoration: none !important;
+  pointer-events: auto !important;
+  z-index: 1000 !important;
+  position: relative !important;
+  outline: none;
+}
+
+.back-btn:hover {
+  background: var(--islamic-deep-gold) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 12px rgba(251, 191, 36, 0.3) !important;
+}
+
+.back-btn:active {
+  background: var(--islamic-deep-gold) !important;
+  transform: translateY(0) !important;
+}
+
+.back-btn:focus {
+  outline: 2px solid var(--islamic-dark-blue) !important;
+  outline-offset: 2px !important;
 }
 
 .sign-main-info {
@@ -994,6 +1163,12 @@ body {
   margin-bottom: var(--space-32);
   flex-wrap: wrap;
   justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .sign-main-info {
+    justify-content: flex-start;
+  }
 }
 
 .sign-symbol-large {
@@ -1062,6 +1237,7 @@ body {
   padding: var(--space-24);
   border-radius: var(--radius-lg);
   border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
 }
 
 .sign-section h3 {
@@ -1069,6 +1245,12 @@ body {
   margin-bottom: var(--space-16);
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-semibold);
+}
+
+.sign-section p {
+  font-size: var(--font-size-base);
+  line-height: 1.7;
+  color: var(--color-text);
 }
 
 .karbala-section {
@@ -1080,103 +1262,7 @@ body {
   color: var(--color-error);
 }
 
-/* Conclusion Section */
-.conclusion {
-  padding: var(--space-32) 0;
-  background: linear-gradient(135deg, var(--night-sky) 0%, var(--islamic-dark-blue) 100%);
-  color: white;
-}
-
-.conclusion-content {
-  max-width: 800px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.conclusion .section-title {
-  color: var(--islamic-gold);
-  margin-bottom: var(--space-32);
-}
-
-.zainab-content {
-  margin-bottom: var(--space-32);
-  font-size: var(--font-size-lg);
-  line-height: 1.8;
-}
-
-.zainab-content p {
-  margin-bottom: var(--space-20);
-  color: var(--islamic-cream);
-}
-
-.final-blessing {
-  background: rgba(255, 255, 255, 0.1);
-  padding: var(--space-24);
-  border-radius: var(--radius-lg);
-  border: 2px solid var(--islamic-gold);
-  margin-bottom: var(--space-32);
-}
-
-.blessing-text {
-  font-size: var(--font-size-xl);
-  font-style: italic;
-  color: var(--islamic-gold);
-  font-weight: var(--font-weight-medium);
-}
-
-.return-btn {
-  background: var(--islamic-gold);
-  color: var(--islamic-dark-blue);
-  padding: var(--space-16) var(--space-32);
-  font-size: var(--font-size-lg);
-  border: none;
-  border-radius: var(--radius-lg);
-  cursor: pointer;
-  transition: all var(--duration-normal) var(--ease-standard);
-  font-weight: var(--font-weight-semibold);
-}
-
-.return-btn:hover {
-  background: var(--islamic-deep-gold);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(251, 191, 36, 0.3);
-}
-
-/* Button Styles */
-.back-btn {
-  background: transparent;
-  color: var(--islamic-dark-blue);
-  border: 2px solid var(--islamic-dark-blue);
-  padding: var(--space-12) var(--space-20);
-  border-radius: var(--radius-base);
-  cursor: pointer;
-  transition: all var(--duration-normal) var(--ease-standard);
-}
-
-.back-btn:hover {
-  background: var(--islamic-dark-blue);
-  color: white;
-}
-
-.prev-btn, .next-btn {
-  background: var(--color-secondary);
-  color: var(--color-text);
-  border: 1px solid var(--color-border);
-  padding: var(--space-8) var(--space-16);
-  border-radius: var(--radius-base);
-  cursor: pointer;
-  transition: all var(--duration-normal) var(--ease-standard);
-}
-
-.prev-btn:hover, .next-btn:hover {
-  background: var(--color-secondary-hover);
-}
-
 /* Utility Classes */
-.hidden {
-  display: none !important;
-}
-
 .fade-in {
   animation: fadeIn 0.6s ease-in-out;
 }
@@ -1192,8 +1278,25 @@ body {
   }
 }
 
+/* Screen reader only class */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
+  .hero {
+    min-height: 60vh;
+  }
+  
   .hero-title {
     font-size: var(--font-size-3xl);
   }
@@ -1208,18 +1311,17 @@ body {
     gap: var(--space-16);
   }
   
+  .zodiac-card {
+    min-height: 200px;
+  }
+  
+  .zodiac-symbol {
+    font-size: 3rem;
+  }
+  
   .sign-main-info {
     flex-direction: column;
     text-align: center;
-  }
-  
-  .sign-detail-header {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  
-  .sign-navigation {
-    justify-content: center;
   }
   
   .arabic-name-large {
@@ -1229,6 +1331,10 @@ body {
   .sign-symbol-large {
     font-size: 4rem;
   }
+
+  .conclusion-paragraph p {
+    font-size: var(--font-size-base);
+  }
 }
 
 /* Smooth Scrolling */
@@ -1236,14 +1342,15 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Focus States */
-.zodiac-card:focus,
-.btn:focus {
+/* Focus States for Accessibility */
+.zodiac-card:focus-visible,
+.btn:focus-visible,
+.back-btn:focus-visible {
   outline: var(--focus-outline);
   outline-offset: 2px;
 }
 
-/* Loading Animation */
+/* Loading States */
 .loading {
   opacity: 0.7;
   pointer-events: none;
@@ -1255,11 +1362,39 @@ html {
     display: none;
   }
   
-  .btn {
+  .btn,
+  .back-btn {
     display: none;
   }
   
   .sign-detail-header {
     display: none;
+  }
+  
+  .zodiac-card {
+    break-inside: avoid;
+  }
+
+  .conclusion {
+    break-inside: avoid;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .zodiac-card {
+    border-width: 3px;
+  }
+  
+  .hero-quote {
+    border-width: 3px;
+  }
+  
+  .back-btn {
+    border: 2px solid var(--islamic-dark-blue) !important;
+  }
+
+  .conclusion-paragraph {
+    border-width: 2px;
   }
 }
