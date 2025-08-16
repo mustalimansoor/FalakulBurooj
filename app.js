@@ -146,33 +146,34 @@ const zodiacData = [
     }
 ];
 
-// Global state
-let currentSignIndex = 0;
-
 // DOM Elements
-let exploreBtn, zodiacCards, zodiacNavigation, signDetail, conclusion;
-let backBtn, prevBtn, nextBtn, returnBtn;
+let mainPage, signDetail, zodiacCards, backBtn;
 let detailSymbol, detailArabic, detailTransliteration, detailEnglish;
 let detailQuality, detailDescription, detailExample, detailParenting, detailKarbala;
 
+// Current state
+let currentView = 'main'; // 'main' or 'detail'
+
 // Initialize the application
 document.addEventListener('DOMContentLoaded', function() {
-    initializeDOMElements();
-    initializeEventListeners();
-    addAnimations();
+    console.log('DOM loaded, initializing application...');
+    // Add a small delay to ensure all elements are fully rendered
+    setTimeout(() => {
+        initializeDOMElements();
+        initializeEventListeners();
+        setupAccessibility();
+        addAnimations();
+    }, 100);
 });
 
 function initializeDOMElements() {
-    // Get all DOM elements with error checking
-    exploreBtn = document.querySelector('.explore-btn');
-    zodiacCards = document.querySelectorAll('.zodiac-card');
-    zodiacNavigation = document.getElementById('zodiac-navigation');
+    console.log('Initializing DOM elements...');
+    
+    // Main elements
+    mainPage = document.getElementById('main-page');
     signDetail = document.getElementById('sign-detail');
-    conclusion = document.getElementById('conclusion');
+    zodiacCards = document.querySelectorAll('.zodiac-card');
     backBtn = document.querySelector('.back-btn');
-    prevBtn = document.querySelector('.prev-btn');
-    nextBtn = document.querySelector('.next-btn');
-    returnBtn = document.querySelector('.return-btn');
 
     // Detail view elements
     detailSymbol = document.getElementById('detail-symbol');
@@ -184,95 +185,128 @@ function initializeDOMElements() {
     detailExample = document.getElementById('detail-example');
     detailParenting = document.getElementById('detail-parenting');
     detailKarbala = document.getElementById('detail-karbala');
+
+    console.log('DOM elements found:', {
+        mainPage: !!mainPage,
+        signDetail: !!signDetail,
+        zodiacCardsCount: zodiacCards.length,
+        backBtn: !!backBtn,
+        detailElements: {
+            symbol: !!detailSymbol,
+            arabic: !!detailArabic,
+            transliteration: !!detailTransliteration,
+            english: !!detailEnglish,
+            quality: !!detailQuality,
+            description: !!detailDescription,
+            example: !!detailExample,
+            parenting: !!detailParenting,
+            karbala: !!detailKarbala
+        }
+    });
+
+    // Verify essential elements exist
+    if (!mainPage || !signDetail) {
+        console.error('Essential DOM elements not found');
+        return false;
+    }
+    
+    console.log('DOM elements initialized successfully');
+    return true;
 }
 
 function initializeEventListeners() {
-    // Explore button - scroll to zodiac navigation
-    if (exploreBtn) {
-        exploreBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            console.log('Explore button clicked'); // Debug log
-            scrollToSection(zodiacNavigation);
-        });
-    }
-
-    // Zodiac card clicks - Fix the index mapping issue
+    console.log('Setting up event listeners...');
+    
+    // Zodiac card clicks
     zodiacCards.forEach((card, index) => {
-        card.addEventListener('click', function(e) {
+        // Remove any existing event listeners first
+        const newCard = card.cloneNode(true);
+        card.parentNode.replaceChild(newCard, card);
+        
+        // Add click event listener
+        newCard.addEventListener('click', function(e) {
             e.preventDefault();
-            console.log(`Card clicked: index ${index}`); // Debug log
-            showSignDetail(index); // Use the actual array index, not data-sign
+            e.stopPropagation();
+            console.log(`Zodiac card ${index} clicked`);
+            showSignDetail(index);
         });
         
-        // Add keyboard navigation
-        card.addEventListener('keydown', function(e) {
+        // Keyboard navigation for cards
+        newCard.addEventListener('keydown', function(e) {
             if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
+                console.log(`Zodiac card ${index} activated via keyboard`);
                 showSignDetail(index);
             }
         });
-        
-        // Make cards focusable
-        card.setAttribute('tabindex', '0');
     });
 
-    // Navigation buttons
+    // Update the zodiacCards NodeList after replacing elements
+    zodiacCards = document.querySelectorAll('.zodiac-card');
+
+    // Back button - Multiple approaches for maximum compatibility
     if (backBtn) {
-        backBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            hideSignDetail();
-        });
-    }
-
-    if (prevBtn) {
-        prevBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            console.log('Previous button clicked'); // Debug log
-            navigateSign(-1);
-        });
-    }
-
-    if (nextBtn) {
-        nextBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            console.log('Next button clicked'); // Debug log
-            navigateSign(1);
-        });
-    }
-
-    if (returnBtn) {
-        returnBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            hideConclusion();
-        });
-    }
-
-    // Keyboard navigation for the entire app
-    document.addEventListener('keydown', function(e) {
-        if (signDetail && !signDetail.classList.contains('hidden')) {
-            if (e.key === 'ArrowLeft') {
+        console.log('Setting up back button event listener');
+        
+        // Remove any existing event listeners by cloning
+        const newBackBtn = backBtn.cloneNode(true);
+        backBtn.parentNode.replaceChild(newBackBtn, backBtn);
+        backBtn = newBackBtn;
+        
+        // Add event listeners to the new button
+        backBtn.addEventListener('click', handleBackButtonClick);
+        backBtn.addEventListener('mousedown', handleBackButtonClick);
+        backBtn.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
-                navigateSign(-1);
-            } else if (e.key === 'ArrowRight') {
-                e.preventDefault();
-                navigateSign(1);
-            } else if (e.key === 'Escape') {
-                e.preventDefault();
-                hideSignDetail();
+                handleBackButtonClick(e);
             }
+        });
+        
+        console.log('Back button event listeners attached');
+    } else {
+        console.error('Back button not found!');
+    }
+
+    // Global keyboard navigation
+    document.addEventListener('keydown', function(e) {
+        if (currentView === 'detail' && e.key === 'Escape') {
+            e.preventDefault();
+            console.log('Escape key pressed, returning to main page');
+            showMainPage();
         }
     });
+
+    console.log('Event listeners set up successfully');
 }
 
-function scrollToSection(element) {
-    if (element) {
-        console.log('Scrolling to element:', element); // Debug log
-        element.scrollIntoView({ 
-            behavior: 'smooth',
-            block: 'start'
-        });
-    } else {
-        console.error('Element to scroll to not found');
+function handleBackButtonClick(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log('Back button triggered, showing main page');
+    showMainPage();
+    return false;
+}
+
+function setupAccessibility() {
+    // Make zodiac cards focusable and add ARIA labels
+    zodiacCards.forEach((card, index) => {
+        card.setAttribute('tabindex', '0');
+        card.setAttribute('role', 'button');
+        
+        const englishName = card.querySelector('.english-name').textContent;
+        const quality = card.querySelector('.quality').textContent;
+        card.setAttribute('aria-label', `View details for ${englishName} - ${quality}`);
+    });
+
+    // Create live region for screen reader announcements
+    if (!document.getElementById('live-region')) {
+        const liveRegion = document.createElement('div');
+        liveRegion.id = 'live-region';
+        liveRegion.setAttribute('aria-live', 'polite');
+        liveRegion.setAttribute('aria-atomic', 'true');
+        liveRegion.className = 'sr-only';
+        document.body.appendChild(liveRegion);
     }
 }
 
@@ -282,12 +316,12 @@ function showSignDetail(index) {
         return;
     }
     
-    currentSignIndex = index;
     const sign = zodiacData[index];
+    currentView = 'detail';
     
-    console.log('Showing sign detail for:', sign.english_name); // Debug log
+    console.log(`Showing detail for: ${sign.english_name}`);
     
-    // Populate detail view with null checks
+    // Populate detail view
     if (detailSymbol) detailSymbol.textContent = sign.symbol;
     if (detailArabic) detailArabic.textContent = sign.arabic_name;
     if (detailTransliteration) detailTransliteration.textContent = sign.arabic_transliteration;
@@ -298,106 +332,77 @@ function showSignDetail(index) {
     if (detailParenting) detailParenting.textContent = sign.parenting_advice;
     if (detailKarbala) detailKarbala.textContent = sign.karbala_connection;
 
-    // Update navigation button states
-    updateNavigationButtons();
-
-    // Hide other sections and show detail
-    if (zodiacNavigation) zodiacNavigation.classList.add('hidden');
-    if (conclusion) conclusion.classList.add('hidden');
+    // Hide main page and show detail view
+    if (mainPage) {
+        mainPage.classList.add('hidden');
+        console.log('Main page hidden');
+    }
+    
     if (signDetail) {
         signDetail.classList.remove('hidden');
-        signDetail.classList.add('fade-in');
-        
-        // Scroll to top of detail view
-        scrollToSection(signDetail);
-        
-        // Remove animation class after animation completes
-        setTimeout(() => {
-            signDetail.classList.remove('fade-in');
-        }, 600);
+        signDetail.style.display = 'block';
+        console.log('Detail view shown');
     }
     
-    // Announce change for accessibility
-    announceSignChange(sign);
-}
-
-function hideSignDetail() {
-    if (signDetail) signDetail.classList.add('hidden');
-    if (zodiacNavigation) {
-        zodiacNavigation.classList.remove('hidden');
-        scrollToSection(zodiacNavigation);
-    }
-}
-
-function hideConclusion() {
-    if (conclusion) conclusion.classList.add('hidden');
-    if (zodiacNavigation) {
-        zodiacNavigation.classList.remove('hidden');
-        scrollToSection(zodiacNavigation);
-    }
-}
-
-function navigateSign(direction) {
-    const newIndex = currentSignIndex + direction;
+    // Scroll to top and focus management
+    window.scrollTo({ top: 0, behavior: 'instant' });
     
-    console.log(`Navigating from ${currentSignIndex} to ${newIndex}`); // Debug log
-    
-    if (newIndex >= 0 && newIndex < zodiacData.length) {
-        showSignDetail(newIndex);
-    } else if (newIndex >= zodiacData.length) {
-        // If we've reached the end, show conclusion
-        showConclusion();
-    } else if (newIndex < 0) {
-        // If going before first sign, return to navigation
-        hideSignDetail();
-    }
+    // Focus on back button after a short delay
+    setTimeout(() => {
+        if (backBtn && backBtn.focus) {
+            backBtn.focus();
+            console.log('Focus set on back button');
+        }
+    }, 200);
+
+    // Announce to screen readers
+    announceViewChange(sign);
 }
 
-function showConclusion() {
-    if (signDetail) signDetail.classList.add('hidden');
-    if (zodiacNavigation) zodiacNavigation.classList.add('hidden');
-    if (conclusion) {
-        conclusion.classList.remove('hidden');
-        conclusion.classList.add('fade-in');
-        scrollToSection(conclusion);
-        
-        setTimeout(() => {
-            conclusion.classList.remove('fade-in');
-        }, 600);
+function showMainPage() {
+    currentView = 'main';
+    console.log('Returning to main page');
+    
+    // Hide detail view and show main page
+    if (signDetail) {
+        signDetail.classList.add('hidden');
+        signDetail.style.display = 'none';
+        console.log('Detail view hidden');
+    }
+    
+    if (mainPage) {
+        mainPage.classList.remove('hidden');
+        mainPage.style.display = 'block';
+        console.log('Main page shown');
+    }
+
+    // Scroll to top immediately
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    console.log('Scrolled to top of main page');
+
+    // Announce to screen readers
+    const liveRegion = document.getElementById('live-region');
+    if (liveRegion) {
+        liveRegion.textContent = 'Returned to main page showing all zodiac signs';
     }
 }
 
-function updateNavigationButtons() {
-    if (!prevBtn || !nextBtn) return;
-    
-    // Update previous button
-    if (currentSignIndex === 0) {
-        prevBtn.textContent = '‹ Back to Grid';
-    } else {
-        const prevSign = zodiacData[currentSignIndex - 1];
-        prevBtn.textContent = `‹ ${prevSign.english_name}`;
+function announceViewChange(sign) {
+    const liveRegion = document.getElementById('live-region');
+    if (liveRegion && sign) {
+        const announcement = `Now viewing ${sign.english_name}, ${sign.arabic_transliteration}. Spiritual quality: ${sign.quality}`;
+        liveRegion.textContent = announcement;
     }
-    
-    // Update next button
-    if (currentSignIndex === zodiacData.length - 1) {
-        nextBtn.textContent = 'Conclusion ›';
-    } else {
-        const nextSign = zodiacData[currentSignIndex + 1];
-        nextBtn.textContent = `${nextSign.english_name} ›`;
-    }
-    
-    console.log(`Updated buttons: prev="${prevBtn.textContent}", next="${nextBtn.textContent}"`); // Debug log
 }
 
 function addAnimations() {
-    if (!zodiacCards.length) return;
-    
-    // Add staggered animation to zodiac cards
+    // Intersection Observer for staggered card animations
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry, index) => {
             if (entry.isIntersecting) {
                 setTimeout(() => {
-                    entry.target.classList.add('fade-in');
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
                 }, index * 100);
             }
         });
@@ -406,43 +411,16 @@ function addAnimations() {
         rootMargin: '0px 0px -50px 0px'
     });
 
-    zodiacCards.forEach(card => {
+    // Initially hide cards for animation
+    zodiacCards.forEach((card) => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        card.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
         observer.observe(card);
-        
-        // Add hover effects for better interactivity
-        card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-5px) scale(1.02)';
-        });
-        
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0) scale(1)';
-        });
     });
 }
 
-// Accessibility improvements
-function announceSignChange(sign) {
-    const announcement = `Now viewing ${sign.english_name}, ${sign.arabic_transliteration}. ${sign.quality}.`;
-    
-    // Create or update live region for screen readers
-    let liveRegion = document.getElementById('live-region');
-    if (!liveRegion) {
-        liveRegion = document.createElement('div');
-        liveRegion.id = 'live-region';
-        liveRegion.setAttribute('aria-live', 'polite');
-        liveRegion.setAttribute('aria-atomic', 'true');
-        liveRegion.style.position = 'absolute';
-        liveRegion.style.left = '-10000px';
-        liveRegion.style.width = '1px';
-        liveRegion.style.height = '1px';
-        liveRegion.style.overflow = 'hidden';
-        document.body.appendChild(liveRegion);
-    }
-    
-    liveRegion.textContent = announcement;
-}
-
-// Performance optimization: Debounce scroll events
+// Utility functions
 function debounce(func, wait) {
     let timeout;
     return function executedFunction(...args) {
@@ -455,22 +433,18 @@ function debounce(func, wait) {
     };
 }
 
-// Add resize handler for responsive behavior
+// Handle window resize for responsive behavior
 window.addEventListener('resize', debounce(() => {
-    // Recalculate any layout-dependent features
-    if (signDetail && !signDetail.classList.contains('hidden')) {
-        // Ensure detail view is properly positioned after resize
-        setTimeout(() => {
-            scrollToSection(signDetail);
-        }, 100);
+    // Ensure proper layout after resize
+    if (currentView === 'detail') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 }, 250));
 
-// Export functions for potential testing or external use
+// Export for potential testing or debugging
 window.FalakAlBuruj = {
     showSignDetail,
-    navigateSign,
+    showMainPage,
     zodiacData,
-    scrollToSection,
-    currentSignIndex: () => currentSignIndex
+    currentView: () => currentView
 };
